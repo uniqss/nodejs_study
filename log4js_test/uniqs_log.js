@@ -7,7 +7,7 @@ log4js.configure({
             layout: {
                 type: 'pattern',
                 //pattern: '%[%r (%x{pid}) %p %c %f %l -%] %m',
-                pattern: '%[%r (%x{pid}) %p %f %l -%] %m',
+                pattern: '%[%r (%x{pid}) %p%] %m',
                 tokens: {
                     pid: function () {
                         return process.pid;
@@ -16,12 +16,13 @@ log4js.configure({
             }
         },
         appender_file: {
-            type: 'file',
+            type: 'dateFile',
             filename: "ulog.log",
+            pattern: '.yyyy-MM-dd-hh',
             layout: {
                 type: 'pattern',
                 //pattern: '%[%r (%x{pid}) %p %c %f %l -%] %m',
-                pattern: '[%r (%x{pid}) %p %f %l] %m',
+                pattern: '[%r (%x{pid}) %p] %m',
                 tokens: {
                     pid: function () {
                         return process.pid;
@@ -33,6 +34,14 @@ log4js.configure({
     categories: {
         default: {appenders: ['appender_console', 'appender_file'], level: 'debug', enableCallStack: true}
     },
+});
+
+
+const log4js_extend = require("log4js-extend");
+
+log4js_extend(log4js, {
+    path: __dirname,
+    format: "[bt @name @file:@line:@column]"
 });
 
 const ulog = log4js.getLogger('app');

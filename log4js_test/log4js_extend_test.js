@@ -16,5 +16,11 @@ log4js_extend(log4js, {
     format: "at @name (@file:@line:@column)"
 });
 
-const logger = log4js.getLogger("category");
-logger.info("test");
+const ulog = log4js.getLogger("category");
+ulog.info("test");
+
+// setInterval(function (){
+//     ulog.info("world hello.");
+// },1000);
+
+module.exports = ulog;
