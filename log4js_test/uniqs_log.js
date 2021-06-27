@@ -45,8 +45,8 @@ log4js_extend(log4js, {
 });
 
 const ulog = log4js.getLogger('app');
-ulog.info('Test log message');
-ulog.debug('Test log message');
+//ulog.info('Test log message');
+//ulog.debug('Test log message');
 
 module.exports = ulog;
 
