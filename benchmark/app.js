@@ -1,17 +1,9 @@
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 
-process.env.NODE_HANDLER = 'mysql-raw';
+process.env.NODE_HANDLER = 'nodejs-mongodb-raw';
 
-if (process.env.TFB_TEST_NAME === 'nodejs-mongodb') {
-  process.env.NODE_HANDLER = 'mongoose';
-} else if (process.env.TFB_TEST_NAME === 'nodejs-mongodb-raw') {
-  process.env.NODE_HANDLER = 'mongodb-raw';
-} else if (process.env.TFB_TEST_NAME === 'nodejs-mysql') {
-  process.env.NODE_HANDLER = 'sequelize';
-} else if (process.env.TFB_TEST_NAME === 'nodejs-postgres') {
-  process.env.NODE_HANDLER = 'sequelize-postgres';
-}
+process.env.NODE_HANDLER = 'mongodb-raw';
 
 if (cluster.isMaster) {
   // Fork workers.
