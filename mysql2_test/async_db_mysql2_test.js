@@ -29,6 +29,17 @@ async function getData() {
         password: '111111',
         database: 'test',
     })
+
+    await db.Query('CREATE TABLE IF NOT EXISTS `alarms`(' +
+        '`id` int(11) NOT NULL AUTO_INCREMENT,' +
+        ' `topic` varchar(255) NOT NULL,' +
+        ' `alarmLevel` int(11) NOT NULL,' +
+        ' `desc` varchar(255) NOT NULL,' +
+        ' `occurredTime` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,' +
+        ' `deleted` tinyint(1) NOT NULL default 0,' +
+        ' PRIMARY KEY (`id`)' +
+        ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+
     await t_insert100();
     await t_insert200();
     console.log("###################################################################")
@@ -41,7 +52,7 @@ async function getData() {
     const someData = await selectPrepared()
     console.log(`rows:${someData.rows} fields:${someData.fields}`)
     someData.rows.forEach((row, idx) => {
-        console.log(row);
+        console.log(`row:${row}, name:${row.name}, age:${row.age}`);
     })
     console.log("###################################################################")
 }
