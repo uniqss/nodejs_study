@@ -2,27 +2,33 @@ const db = require('./async_db_mysql2')
 
 async function t_insert100() {
     let sql = "insert into `table` values('hello', 100)"
-    await db.query(sql)
+    await db.Query(sql)
 }
 
 async function t_insert200() {
     let sql = "insert into `table` values('hello', 200)"
-    await db.query(sql)
+    await db.Query(sql)
 }
 
 async function selectAllData() {
     let sql = 'SELECT * FROM `table`'
-    let allData = await db.query(sql)
+    let allData = await db.Query(sql)
     return allData
 }
 
 async function selectPrepared() {
     let sql = 'SELECT * FROM `table` WHERE `name` = ? AND `age` > ?'
-    let allData = await db.preparedQuery(sql, ['hello', 100])
+    let allData = await db.PreparedQuery(sql, ['hello', 100])
     return allData
 }
 
 async function getData() {
+    db.InitPool({
+        host: 'localhost',
+        user: 'study',
+        password: '111111',
+        database: 'test',
+    })
     await t_insert100();
     await t_insert200();
     console.log("###################################################################")
@@ -41,5 +47,5 @@ async function getData() {
 }
 
 getData().then(() => {
-    db.pool.end()
+    db.EndPool()
 })
