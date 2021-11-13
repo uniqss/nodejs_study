@@ -14,4 +14,10 @@ async function query(sql) {
     return {rows, fields}
 }
 
-module.exports = { query, pool, promisePool }
+async function preparedQuery(sql, values) {
+    const [rows, fields] = await promisePool.query(sql, values);
+    // console.log(`rows:${rows}, fields:${fields} count:${rows.length}`)
+    return {rows, fields}
+}
+
+module.exports = { query, pool, promisePool, preparedQuery }
