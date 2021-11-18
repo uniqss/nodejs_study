@@ -1,0 +1,31 @@
+{
+    "hello": "world",
+    "host_cfg": {
+        "username": "xxx",
+        "password": "yyy",
+        "host": "12.34.56.78",
+        "port": "65535"
+    },
+    //"commented" : { "ip":"1.2.3.4",   "port":5678 },
+    "_hosts": {
+        // xx hosts
+        "xx1": {
+            "ip": "111.111.111.111",
+            "inner_ip": "192.168.1.111",
+            "port": 111,
+            "root": "123456"
+        },
+        "xx2": {
+            "ip": "222.222.222.222",
+            "inner_ip": "192.168.1.222",
+            "port": 222
+        },
+        //"xx5"    : {"ip":"333.333.333.333",   "inner_ip":"192.168.1.333",   "port":333, "root":"111111"},
+        "xx6": {
+            "ip": "aaa.aaa.aaa.aaa",
+            "inner_ip": "192.168.1.aaa",
+            "port": 666,
+            "root": "ppp"
+        }
+    }
+}
