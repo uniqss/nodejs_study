@@ -9,4 +9,3 @@ let json_obj = JSON.parse(raw_data);
 for (const [key, value] of Object.entries(json_obj)) {
     console.log(`key:${key}, value:${value}`)
 }
-

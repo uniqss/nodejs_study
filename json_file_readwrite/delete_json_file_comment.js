@@ -13,7 +13,6 @@ fs.readFile(cfg_json, function (err, data) {
     for (let line of arr) {
         if (line.includes("//")) continue;
         fs.writeFileSync(cfg_json + ".fixed", line + "\n", { flag: "a+" });
-        //console.log(line);                                            
+        //console.log(line);
     }
 });
-
