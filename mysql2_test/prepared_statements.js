@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
 connection.execute(
     'SELECT * FROM `table` WHERE `name` = ? AND `age` > ?',
     ['Rick C-137', 53],
-    function(err, results, fields) {
+    function (err, results, fields) {
         console.log(results); // results contains rows returned by server
         console.log(fields); // fields contains extra meta data about results, if available
 
@@ -21,3 +21,4 @@ connection.execute(
         // which will save query preparation time and give better performance
     }
 );
+

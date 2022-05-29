@@ -14,8 +14,8 @@ connection.query(
     (err, results, fields) => {
         console.log(results); // results contains rows returned by server
         console.log(fields); // fields contains extra meta data about results, if available
-    }
-)
+    
+);
 
 // simple query
 connection.query(

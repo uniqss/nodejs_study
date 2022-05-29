@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 });
 
 // For pool initialization, see above
-pool.query("SELECT * FROM `table`", function(err, rows, fields) {
+pool.query("SELECT * FROM `table`", function (err, rows, fields) {
     console.log(`err:${err}, rows:${rows}, fields:${fields} count:${rows.length}`)
     // Connection is automatically released when query resolves
 })

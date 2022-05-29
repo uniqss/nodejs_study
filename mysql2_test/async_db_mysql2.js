@@ -6,7 +6,7 @@ function InitPool(configPoolOptions) {
     pool = mysql.createPool(configPoolOptions)
 }
 
-function EndPool(){
+function EndPool() {
     pool.end()
 }
 
@@ -17,7 +17,7 @@ async function Query(sql) {
     const promisePool = pool.promise();
     const [rows, fields] = await promisePool.query(sql);
     // console.log(`rows:${rows}, fields:${fields} count:${rows.length}`)
-    return {rows, fields}
+    return { rows, fields }
 }
 
 async function PreparedQuery(sql, values) {
@@ -27,7 +27,7 @@ async function PreparedQuery(sql, values) {
     const promisePool = pool.promise();
     const [rows, fields] = await promisePool.query(sql, values);
     // console.log(`rows:${rows}, fields:${fields} count:${rows.length}`)
-    return {rows, fields}
+    return { rows, fields }
 }
 
 module.exports = { InitPool, EndPool, Query, PreparedQuery }
