@@ -32,7 +32,7 @@ log4js.configure({
         }
     },
     categories: {
-        default: {appenders: ['appender_console', 'appender_file'], level: 'debug', enableCallStack: true}
+        default: { appenders: ['appender_console', 'appender_file'], level: 'debug', enableCallStack: true }
     },
 });
 
@@ -49,4 +49,3 @@ const ulog = log4js.getLogger('app');
 //ulog.debug('Test log message');
 
 module.exports = ulog;
-
