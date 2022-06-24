@@ -1,12 +1,30 @@
 const db = require('./async_db_mysql2')
 
+
+async function t_create_table() {
+    let sql = 'CREATE TABLE IF NOT EXISTS `table`(' +
+        '`id` int(11) NOT NULL AUTO_INCREMENT,' +
+        ' `name` varchar(255) NOT NULL,' +
+        ' `age` int(11) NOT NULL,' +
+        ' `occurredTime` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,' +
+        ' `deleted` tinyint(1) NOT NULL default 0,' +
+        ' PRIMARY KEY (`id`)' +
+        ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4'
+    return await db.Query(sql)
+}
+
+async function t_drop_table() {
+    let sql = 'drop table `table`'
+    return await db.Query(sql)
+}
+
 async function t_insert100() {
-    let sql = "insert into `table` values('hello', 100)"
+    let sql = "insert into `table`(`name`, `age`) values('hello', 100)"
     await db.Query(sql)
 }
 
 async function t_insert200() {
-    let sql = "insert into `table` values('hello', 200)"
+    let sql = "insert into `table`(`name`, `age`) values('hello', 200)"
     await db.Query(sql)
 }
 
@@ -40,6 +58,8 @@ async function getData() {
         ' PRIMARY KEY (`id`)' +
         ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
 
+    await t_create_table();
+
     await t_insert100();
     await t_insert200();
     console.log("###################################################################")
@@ -55,6 +75,7 @@ async function getData() {
         console.log(`row:${row}, name:${row.name}, age:${row.age}`);
     })
     console.log("###################################################################")
+    await t_drop_table();
 }
 
 getData().then(() => {
